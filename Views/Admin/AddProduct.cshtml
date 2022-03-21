@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Product
+
+
+<form asp-controller="Admin" asp-action="AddProduct"  method="post">
+   <label asp-for="Name"></label><br></br>
+   <input asp-for="Name" type="Text"></input><br></br>
+    <label asp-for="SubcategoryId"></label><br></br>
+   <select asp-for="SubcategoryId" type="Text"><br></br>
+        @foreach(var subCategory in @ViewBag.options)
+        {
+            <option value=@subCategory.SubcategoryId>@subCategory.Name</option>
+        }
+
+   </select>
+      <label asp-for="Description"></label><br></br>
+   <textarea asp-for="Description" type="Text"></textarea><br></br>
+      <label asp-for="Highlights"></label><br></br>
+   <textarea asp-for="Highlights" type="Text"></textarea><br></br>
+      <label asp-for="Details"></label><br></br>
+   <textarea asp-for="Details" type="Text"></textarea><br></br>
+     <label asp-for="BrandId"></label><br></br>
+   <select asp-for="BrandId" type="Text">
+        @foreach(var brand in @ViewBag.brands)
+        {
+            <option value=@brand.BrandId>@brand.Name</option>
+        }
+
+
+
+   </select><br></br>
+   <button type="submit">Add</button>
+</form>
+
