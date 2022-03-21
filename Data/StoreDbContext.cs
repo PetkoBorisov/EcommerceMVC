@@ -17,6 +17,7 @@ namespace EcommerceMVC.Data
         public DbSet<Brand> Brands { get; set; }
         public DbSet<ProductVariant> ProductVariants { get; set; }
         public DbSet<ProductReview> ProductReviews { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
 
 
     }

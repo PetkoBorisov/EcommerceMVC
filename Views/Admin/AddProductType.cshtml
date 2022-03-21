@@ -3,20 +3,20 @@
 *@
 @{
 }
-@model Category
+@model ProductType
 
 
-<form asp-controller="Admin" asp-action="AddCategory"  method="post">
+<form asp-controller="Admin" asp-action="AddProductType"  method="post">
    <label asp-for="Name"></label>
    <input asp-for="Name" type="Text"></input>
    <button type="submit">Add</button>
 </form>
 
 <ul>
-    @foreach(var category in ViewBag.Categories)
+    @foreach(var productType in ViewBag.ProductTypes)
     {
         <li>
-             <a href="/Admin/AddSubCategory/@category.CategoryId">@category.Name</a>
+             <a href="#">@productType.Name</a>
         </li>
     }
 

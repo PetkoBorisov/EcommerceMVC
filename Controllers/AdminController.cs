@@ -32,6 +32,8 @@ namespace EcommerceMVC.Controllers
 
         public IActionResult AddCategory()
         {
+            var data = _context.Categories.ToList();
+            ViewBag.Categories = data;
             return View();
         }
 
@@ -48,17 +50,29 @@ namespace EcommerceMVC.Controllers
 
         public IActionResult AddSubCategory(int id)
         {
-            
+            var data = _context.Subcategories.Where(x => x.CategoryId == id).ToList();
+            ViewBag.SubCategories = data;
             return View();
         }
 
 
-        public IActionResult ShowCategories()
+        [HttpPost]
+        public IActionResult AddProductType(int id, ProductType productType)
         {
+            productType.SubcategoryId = id;
+            _context.ProductTypes.Add(productType);
+            _context.SaveChanges();
 
-            var data = _context.Categories.ToList();
-            return View(data);
+            return RedirectToAction("Dashboard", "Admin");
         }
+
+        public IActionResult AddProductType(int id)
+        {
+            var data = _context.ProductTypes.Where(x => x.SubcategoryId == id).ToList();
+            ViewBag.ProductTypes = data;
+            return View();
+        }
+
 
         [HttpPost]
         public IActionResult AddProduct(Product product)

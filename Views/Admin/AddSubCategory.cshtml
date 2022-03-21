@@ -12,3 +12,12 @@
    <button type="submit">Add</button>
 </form>
 
+<ul>
+    @foreach(var subCategory in ViewBag.SubCategories)
+    {
+        <li>
+             <a href="/Admin/AddProductType/@subCategory.SubcategoryId">@subCategory.Name</a>
+        </li>
+    }
+
+</ul>
