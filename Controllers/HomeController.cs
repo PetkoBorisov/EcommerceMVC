@@ -18,9 +18,6 @@ namespace EcommerceMVC.Controllers
         public IActionResult Index()
         {
 
-          
-
-            this._context.Categories.ToList().ForEach(category => Console.WriteLine(category.CategoryId));
             return View();
         }
 

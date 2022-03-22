@@ -32,7 +32,7 @@ namespace EcommerceMVC.Controllers
 
         public IActionResult AddCategory()
         {
-            var data = _context.Categories.ToList();
+            var data = _context.Categories.ToList(); 
             ViewBag.Categories = data;
             return View();
         }
