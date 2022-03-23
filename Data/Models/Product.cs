@@ -18,5 +18,7 @@ namespace EcommerceMVC.Data.Models
 
         public Brand Brand { get; set; }
         public ProductType ProductType { get; set; }
+
+        public List<ProductVariant> ProductVariants { get; set; }
     }
 }

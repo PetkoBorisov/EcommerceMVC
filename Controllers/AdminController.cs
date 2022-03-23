@@ -92,7 +92,7 @@ namespace EcommerceMVC.Controllers
             var category = subcategory.Category;
 
             ViewBag.Heading = $"Adding item to: {category.Name}>{subcategory.Name}>{data.Name}";
-            ViewBag.Products = _context.Products.ToList();
+            ViewBag.Products = _context.Products.Where(x=>x.ProductTypeId == id);
             var brands = _context.Brands.ToList();
            
             ViewBag.Brands = brands;
