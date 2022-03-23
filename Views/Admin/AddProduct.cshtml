@@ -5,18 +5,11 @@
 }
 @model Product
 
-
+<h4>@ViewBag.Heading</h4>
 <form asp-controller="Admin" asp-action="AddProduct"  method="post">
    <label asp-for="Name"></label><br></br>
    <input asp-for="Name" type="Text"></input><br></br>
-    <label asp-for="SubcategoryId"></label><br></br>
-   <select asp-for="SubcategoryId" type="Text"><br></br>
-        @foreach(var subCategory in @ViewBag.options)
-        {
-            <option value=@subCategory.SubcategoryId>@subCategory.Name</option>
-        }
-
-   </select>
+   
       <label asp-for="Description"></label><br></br>
    <textarea asp-for="Description" type="Text"></textarea><br></br>
       <label asp-for="Highlights"></label><br></br>
@@ -37,3 +30,12 @@
    <button type="submit">Add</button>
 </form>
 
+@foreach(var product in @ViewBag.Products){
+
+    
+        <li>
+             <a href="/Admin/AddProductVariant/@product.ProductId">@product.Name</a>
+            
+        </li>
+
+}

@@ -2,15 +2,38 @@
 
     let navBarElem = document.querySelector('nav');
     let buttonsArr = Array.from(navBarElem.querySelectorAll('button'));
-    buttonsArr.forEach(x => x.addEventListener('click', (e) => {
+    
+    
+
+    function showFlyoutMenu(e) {
         e.preventDefault();
-        let menuElem = e.currentTarget.parentElement.parentElement.children[1];
-        if (menuElem.classList.contains('hidden')) {
-            menuElem.classList.remove('hidden')
-        } else {
-            menuElem.classList.add('hidden')
-        }
-            
+        let menuElem = e.currentTarget.children[1];
+        menuElem.classList.remove('hidden')
+    }
+
+
+    function hideFlyoutMenu(e) {
+        e.preventDefault();
+        let menuElem = e.currentTarget.children[1];
+        menuElem.classList.add('hidden')
+    }
+
+
+
+
+    buttonsArr.forEach(x => x.parentElement.parentElement.addEventListener('mouseenter', (e) => {
+
+        showFlyoutMenu(e);
+
     }))
+
+    buttonsArr.forEach(x => x.parentElement.parentElement.addEventListener('mouseleave', (e) => {
+
+        hideFlyoutMenu(e);
+
+    }))
+
+
+
 
 });

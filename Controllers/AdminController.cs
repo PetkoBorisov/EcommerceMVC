@@ -1,6 +1,7 @@
 ﻿using EcommerceMVC.Data;
 using EcommerceMVC.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceMVC.Controllers
 {
@@ -75,19 +76,45 @@ namespace EcommerceMVC.Controllers
 
 
         [HttpPost]
-        public IActionResult AddProduct(Product product)
+        public IActionResult AddProduct(int id,Product product)
         {
-            
-
+            product.ProductTypeId = id;
+            _context.Products.Add(product);
+            _context.SaveChanges();
             return RedirectToAction("Dashboard", "Admin");
         }
 
-        public IActionResult AddProduct()
+        public IActionResult AddProduct(int id)
         {
-            var options = _context.Subcategories.ToList();
+
+            var data = _context.ProductTypes.Include(x => x.Subcategory).ThenInclude(x => x.Category).Where(x=>x.ProductTypeId == id).SingleOrDefault();
+            var subcategory = data.Subcategory;
+            var category = subcategory.Category;
+
+            ViewBag.Heading = $"Adding item to: {category.Name}>{subcategory.Name}>{data.Name}";
+            ViewBag.Products = _context.Products.ToList();
             var brands = _context.Brands.ToList();
-            ViewBag.Options = options;
+           
             ViewBag.Brands = brands;
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult AddProductVariant(int id, ProductVariant productVariant)
+        {
+            productVariant.ProductId = id;
+            productVariant.ReviewScore = 0;
+            productVariant.CreatedDate = DateTime.UtcNow;
+            _context.ProductVariants.Add(productVariant);
+            _context.SaveChanges();
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        public IActionResult AddProductVariant(int id)
+        {
+
             return View();
         }
 

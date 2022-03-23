@@ -3,6 +3,7 @@
 *@
 @{
 @model List<Category>
+
 }
   <!--
   This example requires Tailwind CSS v2.0+ 
@@ -405,7 +406,7 @@
                                                                                 @foreach (var productType in subcategory.ProductTypes)
                                                                                 {
                                                                                     <li class="flex">
-                                                                                        <a href="#" class="hover:text-gray-800"> @productType.Name </a>
+                                                                                        <a href="/Products/Catalog/@productType.ProductTypeId" class="hover:text-gray-800"> @productType.Name </a>
                                                                                     </li>
                                                                                 }
                                                                             }

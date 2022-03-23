@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ProductVariant
+
+<h4>@ViewBag.Heading</h4>
+<form asp-controller="Admin" asp-action="AddProductVariant"  method="post">
+   <label asp-for="Price"></label><br></br>
+   <input asp-for="Price" type="number"></input><br></br>
+     <label asp-for="Color"></label><br></br>
+   <input asp-for="Color" type="text"></input><br></br>
+     <label asp-for="Size"></label><br></br>
+   <input asp-for="Size" type="text"></input><br></br>
+   
+  
+   <button type="submit">Add</button>
+</form>
+

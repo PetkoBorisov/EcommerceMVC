@@ -16,7 +16,7 @@
     @foreach(var productType in ViewBag.ProductTypes)
     {
         <li>
-             <a href="#">@productType.Name</a>
+             <a href="/Admin/AddProduct/@productType.ProductTypeId">@productType.Name</a>
         </li>
     }
 

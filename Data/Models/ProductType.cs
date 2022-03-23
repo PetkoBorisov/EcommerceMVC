@@ -10,6 +10,6 @@ namespace EcommerceMVC.Data.Models
 
         public int SubcategoryId { get; set; }
         public  Subcategory Subcategory { get; set; }
-
+        public List<Product> Products { get; set; }
     }
 }
