@@ -42,7 +42,7 @@
 
         <li>
           <div class="flex items-center">
-            <a href="#" class="mr-2 text-sm font-medium text-gray-900"> @Model.Product.ProductType.Subcategory.Name </a>
+            <a href="/Products/Catalog" class="mr-2 text-sm font-medium text-gray-900"> @Model.Product.ProductType.Subcategory.Name </a>
             <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-5 text-gray-300">
               <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
             </svg>
@@ -134,32 +134,20 @@
                 <!--
                   Active and Checked: "ring ring-offset-1"
                   Not Active and Checked: "ring-2"
-                -->
-                <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                  <input type="radio" name="color-choice" value="White" class="sr-only" aria-labelledby="color-choice-0-label">
-                  <p id="color-choice-0-label" class="sr-only">White</p>
-                  <span aria-hidden="true" class="h-8 w-8 bg-white border border-black border-opacity-10 rounded-full"></span>
-                </label>
+             @*   -->
+               @foreach(var color in Model.Product.ProductVariants){
+                          <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
+                      <input type="radio" name="color-choice" value="@color.Color" class="sr-only" aria-labelledby="color-choice-0-label" href="/Products/Overview/@color.ProductVariantId">
+                          <p id="color-choice-0-label" class="sr-only">@color.Color</p>
+                      <span aria-hidden="true" class="h-8 w-8 bg-@color.-500 border border-black border-opacity-10 rounded-full"></span>
+                    </label>
 
-                <!--
-                  Active and Checked: "ring ring-offset-1"
-                  Not Active and Checked: "ring-2"
-                -->
-                <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                  <input type="radio" name="color-choice" value="Gray" class="sr-only" aria-labelledby="color-choice-1-label">
-                  <p id="color-choice-1-label" class="sr-only">Gray</p>
-                  <span aria-hidden="true" class="h-8 w-8 bg-gray-200 border border-black border-opacity-10 rounded-full"></span>
-                </label>
+                    FIX THIS
 
-                <!--
-                  Active and Checked: "ring ring-offset-1"
-                  Not Active and Checked: "ring-2"
-                -->
-                <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-900">
-                  <input type="radio" name="color-choice" value="Black" class="sr-only" aria-labelledby="color-choice-2-label">
-                  <p id="color-choice-2-label" class="sr-only">Black</p>
-                  <span aria-hidden="true" class="h-8 w-8 bg-gray-900 border border-black border-opacity-10 rounded-full"></span>
-                </label>
+                }
+             *@
+
+              
               </div>
             </fieldset>
           </div>

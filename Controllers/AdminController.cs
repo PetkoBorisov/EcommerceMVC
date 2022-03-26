@@ -1,5 +1,6 @@
 ﻿using EcommerceMVC.Data;
 using EcommerceMVC.Data.Models;
+using EcommerceMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,6 +49,11 @@ namespace EcommerceMVC.Controllers
 
             return RedirectToAction("Dashboard", "Admin");
         }
+
+
+
+
+
 
         public IActionResult AddSubCategory(int id)
         {
@@ -102,13 +108,9 @@ namespace EcommerceMVC.Controllers
 
 
         [HttpPost]
-        public IActionResult AddProductVariant(int id, ProductVariant productVariant)
-        {
-            productVariant.ProductId = id;
-            productVariant.ReviewScore = 0;
-            productVariant.CreatedDate = DateTime.UtcNow;
-            _context.ProductVariants.Add(productVariant);
-            _context.SaveChanges();
+        public IActionResult AddProductVariant(int id, ProductVariant data)
+        {   
+            
             return RedirectToAction("Dashboard", "Admin");
         }
 

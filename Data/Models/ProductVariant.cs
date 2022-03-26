@@ -10,14 +10,18 @@ namespace EcommerceMVC.Data.Models
 
         public decimal Price { get; set; }
 
-        public string Color { get; set; }
+       public int ColorId { get; set; }
 
-        public string Size { get; set; }
+      
+        public int SizeId { get; set; }
 
         public float ReviewScore { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
         public Product Product { get; set; }
+        public Color Color { get; set; }
+        public Size Size { get; set; }
+        public List<Image> Images { get; set; }
     }
 }

@@ -19,6 +19,10 @@ namespace EcommerceMVC.Data
         public DbSet<ProductReview> ProductReviews { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
 
+        
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Size> Sizes { get; set; }
 
     }
 }
