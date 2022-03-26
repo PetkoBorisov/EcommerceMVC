@@ -3,16 +3,25 @@
 *@
 @{
 }
-@model ProductVariant
+@model VariantFormModel
 
 <h4>@ViewBag.Heading</h4>
 <form asp-controller="Admin" asp-action="AddProductVariant"  method="post">
-   <label asp-for="Price"></label><br></br>
-   <input asp-for="Price" type="number"></input><br></br>
-   
-  
-   
-  
+    
+   <label asp-for="ColorId"></label><br></br>
+   <input asp-for="ColorId"></input><br></br>
+     <label asp-for="FsImage1Url"></label><br></br>
+   <input asp-for="FsImage1Url"></input><br></br>
+     <label asp-for="FsImage2Url"></label><br></br>
+   <input asp-for="FsImage2Url"></input><br></br>
+     <label asp-for="HsImage1Url"></label><br></br>
+   <input asp-for="HsImage1Url"></input><br></br>
+     <label asp-for="HsImage2Url"></label><br></br>
+   <input asp-for="HsImage2Url"></input><br></br>
+    <label asp-for="SizeId"></label><br></br>
+   <input asp-for="SizeId"></input><br></br>
+    <label asp-for="Price"></label><br></br>
+   <input asp-for="Price"></input><br></br>
    <button type="submit">Add</button>
 </form>
 

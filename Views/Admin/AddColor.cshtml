@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Color
+
+
+<form asp-controller="Admin" asp-action="AddColor"  method="post">
+   <label asp-for="Name"></label>
+   <input asp-for="Name" type="Text"></input>
+     <label asp-for="hexVal"></label>
+   <input asp-for="hexVal" type="Text"></input>
+     <label asp-for="decimalVal"></label>
+   <input asp-for="decimalVal" type="Text"></input>
+   <button type="submit">Add</button>
+</form>
+

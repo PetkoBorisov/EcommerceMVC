@@ -1,5 +1,6 @@
 using EcommerceMVC.Data;
 using EcommerceMVC.Infrastructure;
+using EcommerceMVC.Services.ProductVariants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<StoreDbContext>(options =>
     options.UseSqlServer(connectionString));
-
+builder.Services.AddTransient<IProductVariantService, ProductVariantService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => {

@@ -1,6 +1,8 @@
 ﻿using EcommerceMVC.Data;
 using EcommerceMVC.Data.Models;
 using EcommerceMVC.Models;
+using EcommerceMVC.Models.ProductVariants;
+using EcommerceMVC.Services.ProductVariants;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,9 +11,11 @@ namespace EcommerceMVC.Controllers
     public class AdminController : Controller
     {
         private readonly StoreDbContext _context;
-
-        public AdminController(StoreDbContext context)
+        private readonly IProductVariantService _variants;
+        public AdminController(StoreDbContext context
+            , IProductVariantService variants)
         {
+            this._variants = variants;
             this._context = context;
         }
 
@@ -108,9 +112,35 @@ namespace EcommerceMVC.Controllers
 
 
         [HttpPost]
-        public IActionResult AddProductVariant(int id, ProductVariant data)
-        {   
-            
+        public IActionResult AddProductVariant(int id, VariantFormModel data)
+        {
+            var fsImage1 = new Image
+            {
+                ImageUrl = data.FsImage1Url
+            };
+
+            var fsImage2 = new Image
+            {
+                ImageUrl = data.FsImage2Url
+            };
+
+            var hsImage1 = new Image
+            {
+                ImageUrl = data.HsImage1Url
+            };
+
+            var hsImage2 = new Image
+            {
+                ImageUrl = data.HsImage2Url
+            };
+            List<Image> images = new List<Image>();
+            images.Add(fsImage1);
+            images.Add(fsImage2);
+            images.Add(hsImage1);
+            images.Add(hsImage2);
+
+            this._variants.Create(id,data.Price,data.ColorId
+                ,images,data.SizeId,5,DateTime.UtcNow);
             return RedirectToAction("Dashboard", "Admin");
         }
 
@@ -133,6 +163,42 @@ namespace EcommerceMVC.Controllers
         public IActionResult AddBrand()
         {
            
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult AddColor(Color color)
+        {
+            _context.Colors.Add(color);
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        public IActionResult AddColor()
+        {
+
+            return View();
+        }
+
+
+
+
+        [HttpPost]
+        public IActionResult AddSize(Size size)
+        {
+            _context.Sizes.Add(size);
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        public IActionResult AddSize()
+        {
+
             return View();
         }
 

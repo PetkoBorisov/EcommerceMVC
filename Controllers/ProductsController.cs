@@ -30,9 +30,10 @@ namespace EcommerceMVC.Controllers
 
         public IActionResult Overview(int? id)
         {
-            var data = _context.ProductVariants.Include(x => x.Product).ThenInclude(x => x.ProductType).ThenInclude(x => x.Subcategory)
+            var data = _context.ProductVariants.Include(x=>x.Images).Include(x=>x.Size).Include(x=>x.Color).Include(x => x.Product).ThenInclude(x => x.ProductType).ThenInclude(x => x.Subcategory)
                 .ThenInclude(x => x.Category).ToList();
-                
+               
+           
             var productVariant = data.Where(x => x.ProductVariantId == id).FirstOrDefault();
          
             return View(productVariant);

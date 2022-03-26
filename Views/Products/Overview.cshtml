@@ -58,18 +58,18 @@
     <!-- Image gallery -->
     <div class="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
       <div class="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
-        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="w-full h-full object-center object-cover">
+        <img src="@Model.Images[0].ImageUrl" alt="Two each of gray, white, and black shirts laying flat." class="w-full h-full object-center object-cover">
       </div>
       <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
         <div class="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg" alt="Model wearing plain black basic tee." class="w-full h-full object-center object-cover">
+          <img src="@Model.Images[1].ImageUrl" alt="Model wearing plain black basic tee." class="w-full h-full object-center object-cover">
         </div>
         <div class="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" alt="Model wearing plain gray basic tee." class="w-full h-full object-center object-cover">
+          <img src="@Model.Images[2].ImageUrl" alt="Model wearing plain gray basic tee." class="w-full h-full object-center object-cover">
         </div>
       </div>
       <div class="aspect-w-4 aspect-h-5 sm:rounded-lg sm:overflow-hidden lg:aspect-w-3 lg:aspect-h-4">
-        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="w-full h-full object-center object-cover">
+        <img src="@Model.Images[3].ImageUrl" alt="Model wearing plain white basic tee." class="w-full h-full object-center object-cover">
       </div>
     </div>
 
@@ -134,18 +134,17 @@
                 <!--
                   Active and Checked: "ring ring-offset-1"
                   Not Active and Checked: "ring-2"
-             @*   -->
-               @foreach(var color in Model.Product.ProductVariants){
+                -->
+               @foreach(var variant in Model.Product.ProductVariants){
                           <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                      <input type="radio" name="color-choice" value="@color.Color" class="sr-only" aria-labelledby="color-choice-0-label" href="/Products/Overview/@color.ProductVariantId">
-                          <p id="color-choice-0-label" class="sr-only">@color.Color</p>
-                      <span aria-hidden="true" class="h-8 w-8 bg-@color.-500 border border-black border-opacity-10 rounded-full"></span>
+                      <input type="radio" name="color-choice" value="@variant.Color.Name" class="sr-only" aria-labelledby="color-choice-0-label" onclick="location.href='/Products/Overview/@variant.ProductVariantId';" >
+                          <p id="color-choice-0-label" class="sr-only">@variant.Color.Name</p>
+                      <span aria-hidden="true" class="h-8 w-8 bg-[@variant.Color.hexVal] border border-black border-opacity-10 rounded-full"></span>
                     </label>
 
-                    FIX THIS
 
                 }
-             *@
+             
 
               
               </div>
@@ -163,21 +162,14 @@
               <legend class="sr-only">Choose a size</legend>
               <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
                 <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-gray-50 text-gray-200 cursor-not-allowed">
-                  <input type="radio" name="size-choice" value="XXS" disabled class="sr-only" aria-labelledby="size-choice-0-label">
-                  <p id="size-choice-0-label">XXS</p>
-
-                  <div aria-hidden="true" class="absolute -inset-px rounded-md border-2 border-gray-200 pointer-events-none">
-                    <svg class="absolute inset-0 w-full h-full text-gray-200 stroke-2" viewBox="0 0 100 100" preserveAspectRatio="none" stroke="currentColor">
-                      <line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke" />
-                    </svg>
-                  </div>
-                </label>
-
-                <!-- Active: "ring-2 ring-indigo-500" -->
+              
+               @foreach(var variant in Model.Product.ProductVariants)
+               {
+                   
+                    <!-- Active: "ring-2 ring-indigo-500" -->
                 <label class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                  <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                  <p id="size-choice-1-label">XS</p>
+                  <input type="radio" name="size-choice" value="@variant.Size.Name" class="sr-only" aria-labelledby="size-choice-1-label">
+                  <p id="size-choice-1-label">@variant.Size.Name</p>
 
                   <!--
                     Active: "border", Not Active: "border-2"
@@ -186,77 +178,11 @@
                   <div class="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true"></div>
                 </label>
 
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                  <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                  <p id="size-choice-2-label">S</p>
 
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <div class="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true"></div>
-                </label>
 
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                  <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                  <p id="size-choice-3-label">M</p>
+               }
+               
 
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <div class="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true"></div>
-                </label>
-
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                  <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                  <p id="size-choice-4-label">L</p>
-
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <div class="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true"></div>
-                </label>
-
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                  <input type="radio" name="size-choice" value="XL" class="sr-only" aria-labelledby="size-choice-5-label">
-                  <p id="size-choice-5-label">XL</p>
-
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <div class="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true"></div>
-                </label>
-
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                  <input type="radio" name="size-choice" value="2XL" class="sr-only" aria-labelledby="size-choice-6-label">
-                  <p id="size-choice-6-label">2XL</p>
-
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <div class="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true"></div>
-                </label>
-
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                  <input type="radio" name="size-choice" value="3XL" class="sr-only" aria-labelledby="size-choice-7-label">
-                  <p id="size-choice-7-label">3XL</p>
-
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <div class="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true"></div>
-                </label>
               </div>
             </fieldset>
           </div>
